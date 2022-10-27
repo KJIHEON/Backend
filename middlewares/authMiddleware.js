@@ -7,8 +7,8 @@ UsersRepository = new UsersRepository();
 module.exports = async (req,res,next)=>{    
     try {
         // const accessToken = req.cookies['accessToken'];
-        const accessToken = req.headers.accessToken
-        if(accessToken == undefined){res.status(400).send(req.headers)}
+        const accessToken = req.headers.accesstoken
+        if(accessToken == undefined){res.status(400).send(req.headers.accesstoken)}
         // AccessToken 만료 여부 확인
         // const accessTokenValidation = await jwtService.validateAccessToken(accessToken.split(' ')[1]);
         const accessTokenValidation = await jwtService.validateAccessToken(accessToken);
@@ -17,7 +17,7 @@ module.exports = async (req,res,next)=>{
         if(!accessTokenValidation){
             // console.log('AccessToken 만료, 재발급 시작');
             // const refreshToken = req.cookies['refreshToken'];
-            const refreshToken = req.headers['refreshToken'];
+            const refreshToken = req.headers.refreshtoken
             // RefreshToken 유효기간 확인
             // const refreshTokenValidation = await jwtService.validateRefreshToken(refreshToken.split(' ')[1]);
             const refreshTokenValidation = await jwtService.validateRefreshToken(refreshToken);
