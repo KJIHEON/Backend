@@ -7,8 +7,8 @@ UsersRepository = new UsersRepository();
 module.exports = async (req,res,next)=>{    
     try {
         // const accessToken = req.cookies['accessToken'];
-        const accessToken = req.headers['accessToken'];
-        if(accessToken == undefined){return res.status(400).send({errorMessage : "토큰이 없대유"})}
+        const accessToken = req.headers.accessToken
+        if(accessToken == undefined){res.status(400).send(req.headers)}
         // AccessToken 만료 여부 확인
         // const accessTokenValidation = await jwtService.validateAccessToken(accessToken.split(' ')[1]);
         const accessTokenValidation = await jwtService.validateAccessToken(accessToken);
